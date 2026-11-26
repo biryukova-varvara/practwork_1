@@ -1,21 +1,22 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Language: {{ language.name }}</h1>
+  <h1>Language: {{ language.name }}</h1>
 
-<div class="ms-4 mt-4">
-<h4>Books in language</h4>
+  <div class="ms-4 mt-4">
+    <h4>Books in language</h4>
 
-<ul>
-  {% for copy in language.book_set.all %}
-  <li>
-    <a href="{{ copy.get_absolute_url }}">{{ copy.title }}</a>
-  </li>
-  {% empty %}
-  <li>There are no books in this language.</li>
-  {% endfor %}
-</ul>
-
+    <ul>
+      {# Обращаемся к связанным книгам через related_name 'book_set' #}
+      {% for book in language.book_set.all %}
+        <li>
+          <a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+        </li>
+      {% empty %}
+        <li>There are no books in this language.</li>
+      {% endfor %}
+    </ul>
+  </div>
 {% endblock %}
 
 {% block sidebar %}
@@ -28,9 +29,8 @@
       <li><a href="{% url 'language-update' language.id %}">Update language</a></li>
     {% endif %}
     {% if perms.catalog.delete_language %}
-      <li><a href="{% url 'author-delete' author.id %}">Delete language</a></li>
+      <li><a href="{% url 'language-delete' language.id %}">Delete language</a></li>
     {% endif %}
-    </ul>
+  </ul>
   {% endif %}
-
-{% endblock %}v
+{% endblock %}

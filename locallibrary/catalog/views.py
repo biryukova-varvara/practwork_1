@@ -204,12 +204,14 @@ class LanguageCreate(PermissionRequiredMixin, CreateView):
     fields = ['name', ]
     permission_required = 'catalog.add_language'
 
+    success_url = '/catalog/languages/'
 
 class LanguageUpdate(PermissionRequiredMixin, UpdateView):
     model = Language
-    fields = ['name', ]
+    fields = ['name',]
     permission_required = 'catalog.change_language'
 
+    success_url = '/catalog/languages/'
 
 class LanguageDelete(PermissionRequiredMixin, DeleteView):
     model = Language
