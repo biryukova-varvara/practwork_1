@@ -24,7 +24,7 @@ class Language(models.Model):
         """
                 String for representing the Model object (in Admin site etc.)
                 """
-        return self.language_name
+        return self.name
 
 from django.urls import reverse #Used to generate URLs by reversing the URL patterns
 
@@ -54,7 +54,7 @@ class Book(models.Model):
         """
         Creates a string for the Language. This is required to display language in Admin.
         """
-        return ', '.join([language.language_name for language in self.language.all()[:3]])
+        return ', '.join([language.name for language in self.language.all()[:3]])
 
     display_language.short_description = 'Language'
 

@@ -186,11 +186,15 @@ class GenreCreate(PermissionRequiredMixin, CreateView):
     fields = ['name', ]
     permission_required = 'catalog.add_genre'
 
+    success_url = '/catalog/genres/'
+
 
 class GenreUpdate(PermissionRequiredMixin, UpdateView):
     model = Genre
     fields = ['name', ]
     permission_required = 'catalog.change_genre'
+
+    success_url = '/catalog/genres/'
 
 
 class GenreDelete(PermissionRequiredMixin, DeleteView):
